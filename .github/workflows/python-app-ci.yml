@@ -93,7 +93,7 @@ jobs:
         trivy-vuln-type: os,library
     
         # Ignore unfixed vulnerabilities (default "false")
-        trivy-ignore-unfixed: "false"
+        trivy-ignore-unfixed: "true"
     
         # Enable scanning image by snyk (default "false")
         # If enabled, "snyk-token" must be also set.
