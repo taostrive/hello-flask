@@ -1,0 +1,18 @@
+environment: dev
+namespace: default
+name: my-hello-flask-app
+image:
+  repository:
+  tag: "latest"
+  pullPolicy: Always
+
+deployment:
+  replicas: 2
+
+service:
+  port: 5001
+  targetPort: 5001
+
+# Production environment values
+ingress:
+  host: "hello-flask-app.example.com"
