@@ -9,6 +9,9 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  TEST_TAG: hello-flask:test
+
 permissions:
   contents: read
 
@@ -49,7 +52,7 @@ jobs:
       uses: ISID/build-and-scan-image@main
       with:
         # Image name and optionally tag in "name:tag" format
-        tag: "hello-flask:${{ github.run_number }}"
+        tag: "${{ env.TEST_TAG }}"
     
         # Path to base directory to run `docker build` command (default ".")
         path: "."
@@ -112,3 +115,16 @@ jobs:
     
         # Exclude base image vulnerabilities (default "false")
         snyk-exclude-base-image-vulns: "false"
+    - name: Test built image before push 
+      run: |
+        docker run -d --name my-hello-flask --network host --rm ${{ env.TEST_TAG }}
+        sleep 5
+        curl -v http://localhost:5001/ 2>&1 |grep "HTTP/1.1 200 OK"
+        if [ $? -eq 0 ];then
+          echo "Quick test passed!"
+        else
+          echo "Quick test failed, please check!"
+        fi
+        docker stop my-hello-flask
+
+        
