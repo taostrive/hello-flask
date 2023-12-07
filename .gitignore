@@ -1,0 +1,10 @@
+# pytest related
+**/.pytest_cache
+**/__pycache__
+
+# OS
+**/.DS_Store
+
+# Logs
+logs
+*.log
