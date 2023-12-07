@@ -3,3 +3,6 @@
 **/.DS_Store
 **/tests
 .vscode
+.git
+**/tmp
+Dockerfile

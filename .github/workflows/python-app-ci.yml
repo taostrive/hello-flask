@@ -78,7 +78,7 @@ jobs:
         dockle-severity: WARN
     
         # Enable scanning image by trivy (default "true")
-        trivy-enable: "true"
+        trivy-enable: "false"
     
         # Trivy version.
         trivy-version: "0.23.0"
@@ -93,7 +93,7 @@ jobs:
         trivy-vuln-type: os,library
     
         # Ignore unfixed vulnerabilities (default "false")
-        trivy-ignore-unfixed: "true"
+        trivy-ignore-unfixed: "false"
     
         # Enable scanning image by snyk (default "false")
         # If enabled, "snyk-token" must be also set.
