@@ -10,6 +10,7 @@ This document provides information about the simple Hello World application with
 * **Linter:** flake8
 * **Docker:** Dockerfile
 * **CI/CD:** Github Actions
+* **Kubernetes support:** Deploy application to kubernetes using helm chart
 
 **Solution and Decisions:**
 
@@ -25,7 +26,15 @@ This document provides information about the simple Hello World application with
 
 **CI/CD:**
 
-* A Github Actions workflow automates code checks (linting and tests), Docker container builds, and Docker image pushes to Docker Hub. This ensures consistent quality and deployment practices.
+* A Github Actions workflow automates code checks (linting and tests), Dockerfile scan and Docker container builds and image scans, and Docker image pushes to Docker Hub(skipped currently). This ensures consistent quality and deployment practices.
+
+**Kubernetes support:** 
+
+* The Helm chart provided in the `deploy` directory allows for deploying this application to any Kubernetes environment. Local development and testing of applications intended for deployment in a Kubernetes cluster can be significantly facilitated and accelerated by utilizing tools like Minikube, KIND, or Colima. This enables developers to work with a local Kubernetes cluster and test their applications without requiring access to a remote cluster.
+
+To deploy and test this application in a local Kubernetes cluster created via Minikube on a Linux machine, follow the steps outlined [here](deploy/minikube-deployment-steps.md).
+
+
 
 **Decisions:**
 
@@ -34,15 +43,17 @@ This document provides information about the simple Hello World application with
 * flake8 was chosen for linting to enforce code style and quality.
 * Docker was used for containerization to ensure consistent runtime environments.
 * Github Actions was chosen for CI/CD due to its integration with Github and ease of configuration.
+* Helm charts was used to deploying this application to any Kubernetes cluster as it seamlessly integrate with CI/CD pipelines, allowing automated and consistent application deployments.
 
 **Further Development:**
 
+* Enhance the GitHub Actions CI/CD pipeline to deploy the Helm chart into a KIND cluster. 
 * Switch packaging tool/dependencies management from Pipenv to Poetry.
 * Use a production WSGI server for production deployments.
-* Enable TLS.
+* Enable Authetication, Authorization and TLS.
 * Implement additional API endpoints.
 * Improve the application's health check logic.
 * Add more unit and integration tests.
 * Configure logging and monitoring for the application.
-* Deploy the application to a cloud platform.
+* Support deploying the application to a cloud Kubernetes cluster by enhancing the helm chart, e.g. enable accessing to the application via an ingress resource.
 
