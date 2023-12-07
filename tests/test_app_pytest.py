@@ -17,4 +17,4 @@ def test_hello_world(client):
 def test_health_check(client):
     response = client.get("/health")
     assert response.status_code == 200
-    assert "Application is healthy" in response.json["message"]
+    assert "App is healthy" in response.json["message"]
