@@ -37,11 +37,11 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Run UT and generate coverage report
       run: |
-        pytest tests --doctest-modules --junitxml=junit/test-results-${{ github.run.id }}.xml --cov=app --cov-report=xml --cov-report=html
+        pytest tests --doctest-modules --junitxml=junit/test-results-${{ github.run_id }}.xml --cov=app --cov-report=xml --cov-report=html
     - name: Upload UT test results
       uses: actions/upload-artifact@v3
       with:
-        name: pytest-results-${{ github.run.id }}
-        path: junit/test-results-${{ github.run.id }}.xml
+        name: pytest-results-${{ github.run_id }}
+        path: junit/test-results-${{ github.run_id }}.xml
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
